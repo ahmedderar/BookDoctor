@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     TextView textView;
+    Button registerBtn;
+    Button addAppointmentBtn;
+    Button signoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,45 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.text);
 
+        registerBtn = (Button) findViewById(R.id.register_btn);
+        addAppointmentBtn = (Button) findViewById(R.id.appointment_btn);
+        signoutBtn = (Button) findViewById(R.id.sign_out_btn);
+
+
+     //Add Appointment Button Action
+        addAppointmentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,AppointmentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+      //Register Button Action
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent  intent = new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        //Signing Out
+        signoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AuthUI.getInstance()
+                        .signOut(MainActivity.this)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            public void onComplete(@NonNull Task<Void> task) {
+                                // ...
+                            }
+                        });
+            }
+        });
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -61,14 +107,9 @@ public class MainActivity extends AppCompatActivity {
                                     .build(),
                             RC_SIGN_IN);
 
-
                 }
-
-
             }
         };
-
-
     }
 
     @Override
