@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adirar.bookdoctor.data.User;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    FirebaseUser user;
 
     TextView textView;
     Button registerBtn;
@@ -57,7 +59,12 @@ public class MainActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                User mUser = new User();
+                mUser.setName(user.getDisplayName());
+                mUser.setPhone(user.getPhoneNumber());
+                mUser.setEmail(user.getEmail());
                 Intent  intent = new Intent(MainActivity.this,RegisterActivity.class);
+                intent.putExtra("user", mUser);
                 startActivity(intent);
             }
         });
@@ -84,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
                 if (user != null){
                     // User is signed in
                     Log.i(TAG,"Already Sign In");
@@ -122,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Log.i(TAG,"Logged in Successfully");
                 // Successfully signed in
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                user = FirebaseAuth.getInstance().getCurrentUser();
                 textView.setText(user.getDisplayName());
                 // ...
             } else {
