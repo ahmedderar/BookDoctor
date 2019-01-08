@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "586516551751",
+    "firebase_url": "https://bookdoctor2-5335a.firebaseio.com",
+    "project_id": "bookdoctor2-5335a",
+    "storage_bucket": "bookdoctor2-5335a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586516551751:android:436a79100c180f03",
+        "android_client_info": {
+          "package_name": "com.adirar.bookdoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586516551751-qo50qinhnofkc7lsobid1plf7u48muqp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.adirar.bookdoctor",
+            "certificate_hash": "a4bc0aac6d7cade86bc6c04e5827ed6e909eb800"
+          }
+        },
+        {
+          "client_id": "586516551751-7748ldq1ilooonuc6aj45p4nhfcelhb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfnM1v_JHM50JQV1_uWXy6AvNrkIMlMz0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586516551751-7748ldq1ilooonuc6aj45p4nhfcelhb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
