@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="6dp"
+    android:orientation="vertical"
     tools:context=".AppointmentActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Date" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Only Sat,Mon and Tue" />
+
+    <EditText
+        android:id="@+id/date_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date" />
+
+    <TextView
+        android:id="@+id/appointment_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Date is chossen Yet" />
+
+    <TextView
+        android:id="@+id/appointment_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Time Schadule Yet" />
+
+</LinearLayout>
