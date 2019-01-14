@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button registerBtn;
     Button addAppointmentBtn;
     Button signoutBtn;
+    User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,AppointmentActivity.class);
+                intent.putExtra("user", mUser);
                 startActivity(intent);
             }
         });
@@ -59,11 +61,14 @@ public class MainActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User mUser = new User();
+
+                /**
+                mUser = new User();
                 mUser.setName(user.getDisplayName());
                 mUser.setPhone(user.getPhoneNumber());
                 mUser.setEmail(user.getEmail());
-                Intent  intent = new Intent(MainActivity.this,RegisterActivity.class);
+                **/
+                 Intent  intent = new Intent(MainActivity.this,RegisterActivity.class);
                 intent.putExtra("user", mUser);
                 startActivity(intent);
             }
@@ -95,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null){
                     // User is signed in
                     Log.i(TAG,"Already Sign In");
+                    mUser = setmUser(user);
                   //  intialSignIN(user.getDisplayName());
                     Toast.makeText(MainActivity.this,
                             "You're now signed in. Welcome",
@@ -131,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 // Successfully signed in
                 user = FirebaseAuth.getInstance().getCurrentUser();
                 textView.setText(user.getDisplayName());
+                mUser = setmUser(user);
                 // ...
             } else {
                 // Sign in failed. If response is null the user canceled the
@@ -154,5 +161,14 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         Log.i(TAG,"On Pause");
         mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+    }
+
+    private User setmUser(FirebaseUser firebaseUser){
+        User temp = new User();
+        temp.setName(user.getDisplayName());
+        temp.setPhone(user.getPhoneNumber());
+        temp.setEmail(user.getEmail());
+        temp.setUid(firebaseUser.getUid());
+        return temp;
     }
 }

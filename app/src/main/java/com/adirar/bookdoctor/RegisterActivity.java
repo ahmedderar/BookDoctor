@@ -64,7 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setPhone(mPatient.getPhone());
                 mPatient.setEmail(email.getText().toString());
                 //Push to firebase
-                firebaseStore.collection("patients").document(mPatient.getPhone()).set(mPatient)
+                firebaseStore.collection("patients").document(user.getUid())
+                        .set(mPatient)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

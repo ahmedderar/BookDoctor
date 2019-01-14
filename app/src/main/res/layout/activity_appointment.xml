@@ -38,4 +38,11 @@
         android:layout_height="wrap_content"
         android:text="No Time Schadule Yet" />
 
+    <Button
+        android:id="@+id/book_appointment_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="Book" />
+
 </LinearLayout>
